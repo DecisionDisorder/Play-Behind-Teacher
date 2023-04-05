@@ -1,0 +1,97 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SnackAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 59713072f49c7644cbe6ca193b06416d, type: 3}
+    - {fileID: 2800000, guid: a03baa8b649af554eaafc5a4ce8287f2, type: 3}
+    - {fileID: 2800000, guid: 8a369aa780ed99744ac06af6798aee4c, type: 3}
+    - {fileID: 2800000, guid: bd3b022138ae4de40b9a188a7258ebba, type: 3}
+    - {fileID: 2800000, guid: fcbb5c70589496c4e8da313cd9c7b135, type: 3}
+    - {fileID: 2800000, guid: d003d57c6a51e8f40931b66b7ea8d7c5, type: 3}
+    - {fileID: 2800000, guid: 24404e9d3dfb59d41b5ff32160976ed3, type: 3}
+    - {fileID: 2800000, guid: bdcf3a0d197d32c408a747bb16556c3e, type: 3}
+    - {fileID: 2800000, guid: a914bbd154e42b7408ad7dc95980ac74, type: 3}
+    - {fileID: 2800000, guid: f2e4e2777c4178443900c3aee5dde48d, type: 3}
+    - {fileID: 2800000, guid: 8b975c9efaef84548b39507deef36cb5, type: 3}
+    - {fileID: 2800000, guid: 2ddad5c6d9f42894fb5a68bcd056cdef, type: 3}
+    - {fileID: 2800000, guid: c58580e7ddc080646921409d09857b43, type: 3}
+    - {fileID: 2800000, guid: e5cfc8f713c35044d996691b5044384b, type: 3}
+    totalSpriteSurfaceArea: 4040528
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: fcbb5c70589496c4e8da313cd9c7b135, type: 3}
+  - {fileID: 21300000, guid: bd3b022138ae4de40b9a188a7258ebba, type: 3}
+  - {fileID: 21300000, guid: a914bbd154e42b7408ad7dc95980ac74, type: 3}
+  - {fileID: 21300000, guid: 59713072f49c7644cbe6ca193b06416d, type: 3}
+  - {fileID: 21300000, guid: 2ddad5c6d9f42894fb5a68bcd056cdef, type: 3}
+  - {fileID: 21300000, guid: f2e4e2777c4178443900c3aee5dde48d, type: 3}
+  - {fileID: 21300000, guid: 8a369aa780ed99744ac06af6798aee4c, type: 3}
+  - {fileID: 21300000, guid: c58580e7ddc080646921409d09857b43, type: 3}
+  - {fileID: 21300000, guid: e5cfc8f713c35044d996691b5044384b, type: 3}
+  - {fileID: 21300000, guid: a03baa8b649af554eaafc5a4ce8287f2, type: 3}
+  - {fileID: 21300000, guid: d003d57c6a51e8f40931b66b7ea8d7c5, type: 3}
+  - {fileID: 21300000, guid: bdcf3a0d197d32c408a747bb16556c3e, type: 3}
+  - {fileID: 21300000, guid: 24404e9d3dfb59d41b5ff32160976ed3, type: 3}
+  - {fileID: 21300000, guid: 8b975c9efaef84548b39507deef36cb5, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Normal Chip
+  - EatingStateBar
+  - Photato Chip
+  - SnackBag
+  - SharkChip
+  - potato inside
+  - choco inside
+  - Snack Gage BackgroundUI (Resize)
+  - Snack Gage UI
+  - Choco Chip
+  - normal inside
+  - Omunor Inside
+  - Omunor Chip
+  - SharkChip inside
+  m_RenderDataMap: {}
+  m_Tag: SnackAtlas
+  m_IsVariant: 0

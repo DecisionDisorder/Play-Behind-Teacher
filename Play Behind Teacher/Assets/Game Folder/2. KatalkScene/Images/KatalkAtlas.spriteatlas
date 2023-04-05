@@ -1,0 +1,103 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: KatalkAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 07ef64676b1a3424b9c71386b71afb78, type: 3}
+    - {fileID: 2800000, guid: dda2d10be4995b348add951a0341b573, type: 3}
+    - {fileID: 2800000, guid: 67d2dae5b5ec69c4593ae1f4a24b972e, type: 3}
+    - {fileID: 2800000, guid: 5ac8540fccb07aa4180fa93a8c1ec00b, type: 3}
+    - {fileID: 2800000, guid: 8d5885f39de43654e941b294310b1746, type: 3}
+    - {fileID: 2800000, guid: 3b6d602ed82fcc349b1e1584a75b4d9c, type: 3}
+    - {fileID: 2800000, guid: cc4e4057f80da0e4ea23bfbf14ca3b75, type: 3}
+    - {fileID: 2800000, guid: c2429c21ae3f72549af60f21f22ec30e, type: 3}
+    - {fileID: 2800000, guid: 4ae3e8e5dcb520c44a9b3f65cb8c02af, type: 3}
+    - {fileID: 2800000, guid: 6e2405fe47ab79b4f8aeb027aa04468a, type: 3}
+    - {fileID: 2800000, guid: 4fbb2a5a4647dc443a3ff36d5ce6eabe, type: 3}
+    - {fileID: 2800000, guid: 0771923c544af3a448fa1967a9b558ac, type: 3}
+    - {fileID: 2800000, guid: d69ebb8608a87b146972ad7870fd9552, type: 3}
+    - {fileID: 2800000, guid: ba8d4eeb5e160f74dbbef5131804be1d, type: 3}
+    - {fileID: 2800000, guid: 531c728b18f97464ca59af4151c42ca3, type: 3}
+    - {fileID: 2800000, guid: f3825d77e9758d344b8ec56dd1faa155, type: 3}
+    totalSpriteSurfaceArea: 12320154
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: c2429c21ae3f72549af60f21f22ec30e, type: 3}
+  - {fileID: 21300000, guid: 8d5885f39de43654e941b294310b1746, type: 3}
+  - {fileID: 21300000, guid: 4ae3e8e5dcb520c44a9b3f65cb8c02af, type: 3}
+  - {fileID: 21300000, guid: 67d2dae5b5ec69c4593ae1f4a24b972e, type: 3}
+  - {fileID: 21300000, guid: d69ebb8608a87b146972ad7870fd9552, type: 3}
+  - {fileID: 21300000, guid: cc4e4057f80da0e4ea23bfbf14ca3b75, type: 3}
+  - {fileID: 21300000, guid: 07ef64676b1a3424b9c71386b71afb78, type: 3}
+  - {fileID: 21300000, guid: f3825d77e9758d344b8ec56dd1faa155, type: 3}
+  - {fileID: 21300000, guid: 4fbb2a5a4647dc443a3ff36d5ce6eabe, type: 3}
+  - {fileID: 21300000, guid: dda2d10be4995b348add951a0341b573, type: 3}
+  - {fileID: 21300000, guid: 531c728b18f97464ca59af4151c42ca3, type: 3}
+  - {fileID: 21300000, guid: ba8d4eeb5e160f74dbbef5131804be1d, type: 3}
+  - {fileID: 21300000, guid: 0771923c544af3a448fa1967a9b558ac, type: 3}
+  - {fileID: 21300000, guid: 3b6d602ed82fcc349b1e1584a75b4d9c, type: 3}
+  - {fileID: 21300000, guid: 6e2405fe47ab79b4f8aeb027aa04468a, type: 3}
+  - {fileID: 21300000, guid: 5ac8540fccb07aa4180fa93a8c1ec00b, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Galaxy S8
+  - Display
+  - HomeButton
+  - Black
+  - KatalkInside
+  - EnteringField
+  - Player's TalkBox
+  - Other's TalkBox
+  - KatalkAlarm
+  - BackButton
+  - MultiButton
+  - KatalkOutside
+  - KatalkDisplay
+  - Edged_Black
+  - kakao display2
+  - ClassRoom_NoTV
+  m_RenderDataMap: {}
+  m_Tag: KatalkAtlas
+  m_IsVariant: 0

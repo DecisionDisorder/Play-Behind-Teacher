@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: CommonAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 7587731bcc8fa1a4c92277d9e8688c83, type: 3}
+    - {fileID: 2800000, guid: 2884a2245ec58cc41a5254a2a99bfbe3, type: 3}
+    - {fileID: 2800000, guid: 7615fe46e599c4b4682d712e28af856c, type: 3}
+    - {fileID: 2800000, guid: 20fc097d4f341154ba1eb1385f8885a5, type: 3}
+    - {fileID: 2800000, guid: 789c89be6aad4d24795d850452437243, type: 3}
+    - {fileID: 2800000, guid: fbe6c8f9a5d04334eb2ad9313302f0e0, type: 3}
+    - {fileID: 2800000, guid: 8d506330c3ddb4a4695e89de95013b69, type: 3}
+    - {fileID: 2800000, guid: 317a037ebdf714b4db228bfe2e387738, type: 3}
+    - {fileID: 2800000, guid: e2da03fed0d65944286080a45869fb28, type: 3}
+    - {fileID: 2800000, guid: 41d9bf09b0baec7409ab4f10558c7af7, type: 3}
+    - {fileID: 2800000, guid: 7c89a0f0a8ea8e248ab11417ba0bd923, type: 3}
+    - {fileID: 2800000, guid: 9b0670fbf7fada144967c237217e3cfb, type: 3}
+    - {fileID: 2800000, guid: b1e42138ffe098547872ffd990e6686d, type: 3}
+    - {fileID: 2800000, guid: bac404d53652a5b4cab388decd2a1cb1, type: 3}
+    - {fileID: 2800000, guid: b2226d8967c1d8b4989acf5c2f275444, type: 3}
+    - {fileID: 2800000, guid: de427a757ca5a85408fc2393dc8554ea, type: 3}
+    - {fileID: 2800000, guid: cecca0f89b81c684087bdf9ad818ee33, type: 3}
+    - {fileID: 2800000, guid: 2bc695e03be02a2429cc362e09c22e4d, type: 3}
+    totalSpriteSurfaceArea: 6431376
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 8d506330c3ddb4a4695e89de95013b69, type: 3}
+  - {fileID: 21300000, guid: 2bc695e03be02a2429cc362e09c22e4d, type: 3}
+  - {fileID: 21300000, guid: 7c89a0f0a8ea8e248ab11417ba0bd923, type: 3}
+  - {fileID: 21300000, guid: 2884a2245ec58cc41a5254a2a99bfbe3, type: 3}
+  - {fileID: 21300000, guid: de427a757ca5a85408fc2393dc8554ea, type: 3}
+  - {fileID: 21300000, guid: bac404d53652a5b4cab388decd2a1cb1, type: 3}
+  - {fileID: 21300000, guid: 7615fe46e599c4b4682d712e28af856c, type: 3}
+  - {fileID: 21300000, guid: b1e42138ffe098547872ffd990e6686d, type: 3}
+  - {fileID: 21300000, guid: cecca0f89b81c684087bdf9ad818ee33, type: 3}
+  - {fileID: 21300000, guid: 41d9bf09b0baec7409ab4f10558c7af7, type: 3}
+  - {fileID: 21300000, guid: b2226d8967c1d8b4989acf5c2f275444, type: 3}
+  - {fileID: 21300000, guid: fbe6c8f9a5d04334eb2ad9313302f0e0, type: 3}
+  - {fileID: 21300000, guid: 7587731bcc8fa1a4c92277d9e8688c83, type: 3}
+  - {fileID: 21300000, guid: 9b0670fbf7fada144967c237217e3cfb, type: 3}
+  - {fileID: 21300000, guid: 20fc097d4f341154ba1eb1385f8885a5, type: 3}
+  - {fileID: 21300000, guid: 317a037ebdf714b4db228bfe2e387738, type: 3}
+  - {fileID: 21300000, guid: 789c89be6aad4d24795d850452437243, type: 3}
+  - {fileID: 21300000, guid: e2da03fed0d65944286080a45869fb28, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - katalkGame_thumbnail_Edit
+  - "\uD559\uC0DD \uBC8C_edit"
+  - SaveButton_Temp
+  - Coin
+  - "\uB9AC\uBDF0!"
+  - TV Game Thumbnail_Edit2
+  - Coin_sc(HD)
+  - SnackGame Thumbnail Edited
+  - "\uC190\uAC00\uB77D"
+  - Leaderboard2
+  - TV Leaderboard
+  - Katalk Leaderboard
+  - Achievement_outline
+  - Snack Leaderboard
+  - Coins 1
+  - Leaderboard
+  - Daily Gift Icon_outline
+  - Leaderboard2-1
+  m_RenderDataMap: {}
+  m_Tag: CommonAtlas
+  m_IsVariant: 0

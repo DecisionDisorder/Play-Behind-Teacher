@@ -1,0 +1,76 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ClassroomAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: 8b0872d424be1944982c0ff951a61419, type: 3}
+    - {fileID: 2800000, guid: 1edcce20c3fa4884a8312b07029e3850, type: 3}
+    - {fileID: 2800000, guid: 377f8621ac4e2374fb7beb5c087dcad4, type: 3}
+    - {fileID: 2800000, guid: f778ec236916b734bafb92e2491ca6e8, type: 3}
+    - {fileID: 2800000, guid: e7eae3acf57961f4bb12d8a715500461, type: 3}
+    - {fileID: 2800000, guid: 778f4f94168f4fb44821f21bf6c66c00, type: 3}
+    - {fileID: 2800000, guid: 05c9143054d1e7b41915c9e046d2febd, type: 3}
+    totalSpriteSurfaceArea: 6261432
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 1edcce20c3fa4884a8312b07029e3850, type: 3}
+  - {fileID: 21300000, guid: 05c9143054d1e7b41915c9e046d2febd, type: 3}
+  - {fileID: 21300000, guid: 377f8621ac4e2374fb7beb5c087dcad4, type: 3}
+  - {fileID: 21300000, guid: f778ec236916b734bafb92e2491ca6e8, type: 3}
+  - {fileID: 21300000, guid: 778f4f94168f4fb44821f21bf6c66c00, type: 3}
+  - {fileID: 21300000, guid: 8b0872d424be1944982c0ff951a61419, type: 3}
+  - {fileID: 21300000, guid: e7eae3acf57961f4bb12d8a715500461, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Desk
+  - Blackboard
+  - roof
+  - Student_Player Only
+  - blink
+  - "TV \uC815\uBA74"
+  - Student_Player with Desk
+  m_RenderDataMap: {}
+  m_Tag: ClassroomAtlas
+  m_IsVariant: 0

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FrontStudentAtlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings:
+    - serializedVersion: 3
+      m_BuildTarget: Android
+      m_MaxTextureSize: 2048
+      m_ResizeAlgorithm: 0
+      m_TextureFormat: 47
+      m_TextureCompression: 1
+      m_CompressionQuality: 50
+      m_CrunchedCompression: 0
+      m_AllowsAlphaSplitting: 0
+      m_Overridden: 1
+      m_AndroidETC2FallbackOverride: 0
+      m_ForceMaximumCompressionQuality_BC6H_BC7: 0
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 2800000, guid: bb8ba89fe51f31a46ae8acd7f4e6d361, type: 3}
+    - {fileID: 2800000, guid: 3a0de662136bb0d4bbb7b3fe16cb41af, type: 3}
+    - {fileID: 2800000, guid: 93f2ff66d1186744982c955723e9f9c9, type: 3}
+    - {fileID: 2800000, guid: 5eef6e8ff4090b94f8f5ab1a2e81df58, type: 3}
+    - {fileID: 2800000, guid: 3944bc06248ddb3428a71df0fc28c038, type: 3}
+    - {fileID: 2800000, guid: 8fcb2edce55c7e241bedde03143f9601, type: 3}
+    totalSpriteSurfaceArea: 8224920
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3a0de662136bb0d4bbb7b3fe16cb41af, type: 3}
+  - {fileID: 21300000, guid: 3944bc06248ddb3428a71df0fc28c038, type: 3}
+  - {fileID: 21300000, guid: 93f2ff66d1186744982c955723e9f9c9, type: 3}
+  - {fileID: 21300000, guid: 8fcb2edce55c7e241bedde03143f9601, type: 3}
+  - {fileID: 21300000, guid: 5eef6e8ff4090b94f8f5ab1a2e81df58, type: 3}
+  - {fileID: 21300000, guid: bb8ba89fe51f31a46ae8acd7f4e6d361, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - FrontStudent_Left (0)
+  - FrontStudent_Middle (1)
+  - FrontStudent_Left (1)
+  - FrontStudent_Right (0)
+  - FrontStudent_Middle (0)
+  - FrontStudent_Right (1)
+  m_RenderDataMap: {}
+  m_Tag: FrontStudentAtlas
+  m_IsVariant: 0
