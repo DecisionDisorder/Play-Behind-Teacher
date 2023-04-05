@@ -3,10 +3,17 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 클라우드 백업 시스템을 위한 백업 데이터 관리 클래스
+/// </summary>
 public class BackUpDataMgr : MonoBehaviour {
 
+    /// <summary>
+    /// 데이터를 하나의 클래스로 모으기 위한 인스턴스
+    /// </summary>
     public DataGrouping dgdata = new DataGrouping();
 
+    // 각종 저장할 데이터를 보유하고 있는 관리 클래스
     public TvGameMgr tvGameMgr;
     public KatalkGameMgr katalkGameMgr;
     public SnackGameMgr snackGameMgr;
@@ -27,30 +34,67 @@ public class BackUpDataMgr : MonoBehaviour {
     public DataManager dataManager;
     public MainSceneMgr mainSceneMgr;
 
+    /// <summary>
+    /// 클라우드 저장/불러오기 메뉴 오브젝트
+    /// </summary>
     public GameObject Recovery_Menu;
+    /// <summary>
+    /// 최근 백업 날짜 텍스트
+    /// </summary>
     public Text BackupDate_text;
+    /// <summary>
+    /// 백업 날짜
+    /// </summary>
     public string SavedDate;
-    //public GameObject DataLoss_RecoveryMenu;
 
+    /// <summary>
+    /// 불러오기/저장 로그 텍스트
+    /// </summary>
     public Text[] Log_text = new Text[2];
+    /// <summary>
+    /// 진행상황 로그
+    /// </summary>
     public static string condition_log = "";
     
+    /// <summary>
+    /// 로그인 중인지 여부
+    /// </summary>
     public static bool Logining = true;
+    /// <summary>
+    /// 로그인 성공 여부
+    /// </summary>
     public static bool LoginSuccess;
 
+    /// <summary>
+    /// 불러오기/저장 확인 메뉴
+    /// </summary>
     public GameObject[] Confirm_Menus;
-    public GameObject[] ReConfirm_Menus = new GameObject[2];//0:Load 1:Save
+    /// <summary>
+    /// 불러오기/저장 재확인 메뉴
+    /// </summary>
+    public GameObject[] ReConfirm_Menus = new GameObject[2];
+    /// <summary>
+    /// 불러오기/저장 진행 상황 표기 메뉴
+    /// </summary>
     public GameObject[] AfterConfirm_Menus = new GameObject[2];
+    /// <summary>
+    /// 불러오기/저장 닫기 메뉴
+    /// </summary>
     public GameObject[] CloseButtons = new GameObject[2];
 
-
+    /// <summary>
+    /// 클라우드 저장/불러오기가 진행 중인지 여부
+    /// </summary>
     public static bool isCloudProcessing = false;
-    //public GameObject LoginFirst;
     
+    /// <summary>
+    /// 진행상황 로그 업데이트
+    /// </summary>
     IEnumerator LogRenew()
     {
         yield return new WaitForEndOfFrame();
 
+        // 저장 메뉴가 활성화 되어있을 때 진행 상황 업데이트
         if (AfterConfirm_Menus[1].activeInHierarchy)
         {
             Log_text[1].text = "<진행 상황>\n" + condition_log;
@@ -61,6 +105,7 @@ public class BackUpDataMgr : MonoBehaviour {
                 CloseButtons[1].SetActive(true);
             }
         }
+        // 불러오기 메뉴가 활성화 되어있을 때 진행 상황 업데이트
         else if (AfterConfirm_Menus[0].activeInHierarchy)
         {
             Log_text[0].text = "<진행 상황>\n" + condition_log;
@@ -77,6 +122,9 @@ public class BackUpDataMgr : MonoBehaviour {
 
         }    
     }
+    /// <summary>
+    /// 클라우드 저장/불러오기 메뉴 On/Off
+    /// </summary>
     public void MenusOnOff(int key)
     {
         switch (key) {
@@ -104,29 +152,42 @@ public class BackUpDataMgr : MonoBehaviour {
                 break;
         }
     }
+
+    /// <summary>
+    /// 클라우드 데이터 저장을 위한 Serialization 작업
+    /// </summary>
     public void SaveData_Serialization()
     {
+        // 클라우드 저장 진행 중임을 표기
         isCloudProcessing = true;
+        // 데이터를 하나의 클래스로 모으기
         SetDataToClass();
 
+        // 직렬화 진행 후 바이트로 변환
         string serialized = SerializationData.SetSerialization(dgdata);
         Cloud_Manager.GameData = SerializationData.StringToByte(serialized);
 
+        // 백업 시기 업데이트
         SavedDate = DateStringSet();
         if (BackupDate_text != null)
         {
             BackupDate_text.text = "백업 시기: " + SavedDate;
         }
 
+        // 로그 기록 시작
         condition_log = "";
         condition_log += "저장 시작 하는 중\n";
         ReConfirm_Menus[1].SetActive(false);
         AfterConfirm_Menus[1].SetActive(true);
         StartCoroutine(LogRenew());
 
+        // 클라우드 저장 시작
         Cloud_Manager.SaveToCloud();
     }
 
+    /// <summary>
+    /// 클라우드 데이터 로드를 위한 Deserialization 작업
+    /// </summary>
     public void LoadData_Serialization()
     {
         isCloudProcessing = true;
@@ -138,22 +199,6 @@ public class BackUpDataMgr : MonoBehaviour {
         StartCoroutine(LogRenew());
         
         Cloud_Manager.LoadFromCloud();
-
-
-        /*dataManager.isDataLoss = JudgeDataloss(serialized);
-        if (dataManager.isDataLoss)
-        {
-            Debug.Log("데이터 상태: 손실 감지");
-        }
-        else
-        {
-            Debug.Log("데이터 상태: 이상 없음");
-            if (DataLoss_RecoveryMenu != null)
-                DataLoss_RecoveryMenu.SetActive(false);
-        }*/
-
-
-        //dataManager.isDataLoss = false;
     }
     public void DeseralizeData()
     {

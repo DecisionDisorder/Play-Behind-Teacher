@@ -28,7 +28,7 @@ public class SnackGameMgr : MonoBehaviour
 
     public InGameMgr inGameMgr;
     public TeacherMgr teacherMgr;
-    public SnackDifficulty snackDifficulty;
+    public DifficultyData snackDifficultyData;
     public DataManager dataMgr;
     public SliderColorMgr endurColorMgr;
     public CoinMgr coinMgr;
@@ -52,6 +52,7 @@ public class SnackGameMgr : MonoBehaviour
     public bool isPressing = false;
     bool isFirstPress = true;
     bool isFirstDecrease = true;
+    IEnumerator decreaseEndur;
 
     public int[] Percent_GO;
     bool isFirstSound = true;
@@ -110,7 +111,7 @@ public class SnackGameMgr : MonoBehaviour
         if (isFirstPress)
         {
             inGameMgr.BfStartGame.SetActive(false);
-            snackDifficulty.StartTimePlus();
+            inGameMgr.StartTimer();
             teacherMgr.StartTeacherChange();
             StartCoroutine(EatingCoroutine());
             StartPlusScore();
@@ -223,13 +224,20 @@ public class SnackGameMgr : MonoBehaviour
         }
 
     }
+
+    public void StartDecreaseEndurance()
+    {
+        decreaseEndur = DecreaseEndurance();
+        StartCoroutine(decreaseEndur);
+    }
+
     IEnumerator DecreaseEndurance()
     {
-        yield return new WaitForSeconds(snackDifficulty.Period);
+        yield return new WaitForSeconds(snackDifficultyData.Period);
 
         int startValue = Endurance;
 
-        int endurM = (int)(EnduranceMax * snackDifficulty.DecreaseEndur[snackDifficulty.Step]);
+        int endurM = (int)(EnduranceMax * snackDifficultyData.DecreasePortion[inGameMgr.stage] * 0.01f);
         levelMgr.StatArr[2].ApplyAbility(ref endurM);
         Endurance -= endurM;
 
@@ -243,7 +251,7 @@ public class SnackGameMgr : MonoBehaviour
 
 
         if (!isEating && inGameMgr.IsPlayingGame && Endurance > 0)
-            StartCoroutine(DecreaseEndurance());
+            StartDecreaseEndurance();
         else if (Endurance <= 0 && !teacherMgr.TestMode)
         {
             if (!tutorialMgr.isTutorialOn)
@@ -301,12 +309,14 @@ public class SnackGameMgr : MonoBehaviour
             EatingSnack_AS.Stop();
             if (isFirstDecrease)
             {
-                StartCoroutine(DecreaseEndurance());
+                StartDecreaseEndurance();
                 isFirstDecrease = false;
             }
         }
         else
         {
+            if (decreaseEndur != null)
+                StopCoroutine(decreaseEndur);
             isEating = true;
             Endurance += snackStore.Buscuits[snackStore.selectedBuscuit].effect;
             isGageDown = false;
@@ -453,11 +463,12 @@ public class SnackGameMgr : MonoBehaviour
         {
             MissionTime = Random.Range(MissionMin, MissionMax);
             missionTime_fixed = MissionTime;
-            GivenTime = 3;
+            GivenTime = MissionTime + 5;
+            Timer_Slider.gameObject.SetActive(true);
             Timer_Slider.maxValue = GivenTime;
 
             MissionMessage.SetActive(true);
-            string mtime = string.Format("{0:F2}", MissionTime);
+            string mtime = string.Format("{0:0.0}", MissionTime);
             MissionMessage_Text.text = "미션: <color=red>" + mtime + "초</color> 동안 <color=#00ff00ff>잘 녹여먹음</color>을 유지하기!";
             StartCoroutine(CountingTime());
         }
@@ -476,17 +487,19 @@ public class SnackGameMgr : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         if (!tutorialMgr.stopTimerForTutorial)
         {
+            GivenTime -= 0.1f;
+            Timer_Slider.value = GivenTime;
             if (400 <= EatingLevel && EatingLevel <= 500)
             {
                 MissionTime -= 0.1f;
-                string mtime = string.Format("{0:F2}", MissionTime);
+                string mtime = string.Format("{0:0.0}", MissionTime);
                 MissionMessage_Text.text = "미션: <color=red>" + mtime + "초</color> 동안 <color=#00ff00ff>잘 녹여먹음</color>을 유지하기!";
                 if (MissionTime <= 0)
                 {
                     if (tutorialMgr.isTutorialOn)
                     {
                         tutorialMgr.ProcessTutorial_InGame();
-                        tutorialMgr.MissionResult_text.text = "잘하셨습니다!!\n다음 단계로 가볼까요??";
+                        tutorialMgr.MissionResult_text.text = "잘하셨습니다!\n다음 단계로 가볼까요?";
                         MissionMessage_Text.text = "미션을 성공하셨습니다!";
                     }
                     else
@@ -495,23 +508,22 @@ public class SnackGameMgr : MonoBehaviour
                         MissionReward(ref rewardResult);
                         MissionMessage_Text.text = "미션을 성공하셨습니다!\n보상: " + rewardResult;
                     }
+                    Timer_Slider.gameObject.SetActive(false);
                     StartCoroutine(CloseMissionMessage(2.5f));
+                    yield break;
                 }
             }
-            else
+            
+            if (GivenTime <= 0)
             {
-                GivenTime -= 0.1f;
-                Timer_Slider.value = GivenTime;
-                if (GivenTime <= 0)
+                if (tutorialMgr.isTutorialOn)
                 {
-                    if (tutorialMgr.isTutorialOn)
-                    {
-                        tutorialMgr.ProcessTutorial_InGame();
-                        tutorialMgr.MissionResult_text.text = "결과가 어떻든 잘하셨습니다!\n다음 단계로 가볼까요??";
-                    }
-                    MissionMessage_Text.text = "미션을 실패하셨습니다...";
-                    StartCoroutine(CloseMissionMessage(2.0f));
+                    tutorialMgr.ProcessTutorial_InGame();
+                    tutorialMgr.MissionResult_text.text = "결과가 어떻든 잘하셨습니다!\n다음 단계로 가볼까요??";
                 }
+                MissionMessage_Text.text = "미션을 실패하셨습니다...";
+                Timer_Slider.gameObject.SetActive(false);
+                StartCoroutine(CloseMissionMessage(2.0f));
             }
         }
         if(GivenTime > 0 && MissionTime > 0 && inGameMgr.IsPlayingGame)
@@ -539,7 +551,7 @@ public class SnackGameMgr : MonoBehaviour
         if(r < 60) //점수
         {
             if (!isMissionOn_EatSnack)
-                reward = (int)(missionTime_fixed * 10) / 2 * RewardScore_Mission1;
+                reward = (int)(missionTime_fixed / 0.5f) * RewardScore_Mission1;
             else
                 reward = MissionSnack_fixed * RewardScore_Mission2;
 
@@ -552,7 +564,7 @@ public class SnackGameMgr : MonoBehaviour
         else//코인
         {
             if (!isMissionOn_EatSnack)
-                reward = (int)(missionTime_fixed * 10) / 2 * RewardCoin_Mission1;
+                reward = (int)(missionTime_fixed / 0.5f) * RewardCoin_Mission1;
             else
                 reward = MissionSnack_fixed * RewardCoin_Mission2;
 
@@ -579,7 +591,7 @@ public class SnackGameMgr : MonoBehaviour
     }
     public void ResetGame()
     {
-        teacherMgr.SetGreen();
+        teacherMgr.SetSafe();
         teacherMgr.NormalCon.SetActive(true);
         teacherMgr.GameOverBySleep.SetActive(false);
         teacherMgr.GameOverByContent.SetActive(false);
@@ -592,8 +604,8 @@ public class SnackGameMgr : MonoBehaviour
         Score_text.color = ScoreColors[0];
         StopCoroutine(waitMission);
         MissionMessage.SetActive(false);
-        snackDifficulty.Playtime = 0;
-        snackDifficulty.Step = 0;
+        inGameMgr.playTimeEach = 0;
+        inGameMgr.stage = 0;
         Score_text.text = "점수: 0";
         coinMgr.ResetAddedCoin();
         Endurance_slider.value = Endurance_slider.maxValue;

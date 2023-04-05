@@ -11,11 +11,11 @@ public class ResolutionSettings : MonoBehaviour {
     int s_width,s_height;
     public static bool is18vs9 = false;
     
-    void Awake()
+    /*void Awake()
     {
         s_width = Screen.width;
         s_height = Screen.height;
-
+        
         if(s_height/s_width >= 2)
         {
             SetBezelLessDisplay();
@@ -27,7 +27,7 @@ public class ResolutionSettings : MonoBehaviour {
             is18vs9 = false;
             Screen.SetResolution(s_width, s_width / 9 * 16, false);
         }
-    }
+    }*/
 
     void SetBezelLessDisplay()
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SnackDifficulty : MonoBehaviour {
-
+    /*
     public int Playtime = 0;
     public float[] Green_Min = new float[5] { 2.5f, 2, 1.5f, 1, 1 };
     public float[] Green_Max = new float[5] { 4, 3, 3, 2.5f, 2 };
@@ -41,5 +41,5 @@ public class SnackDifficulty : MonoBehaviour {
 
         if (inGameMgr.IsPlayingGame)
             StartCoroutine(TimePlus());
-    }
+    }*/
 }

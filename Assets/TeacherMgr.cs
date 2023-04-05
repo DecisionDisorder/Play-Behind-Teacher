@@ -34,7 +34,7 @@ public class TeacherMgr : MonoBehaviour {
     public TVButtonMgr tvButtonMgr;
     public InGameMgr inGameMgr;
     public TvGameMgr tvGameMgr;
-    public TVGameDifficulty tvGameDifficulty;
+    //public TVGameDifficulty tvGameDifficulty;
 
     public DataManager dataMgr;
     public LevelMgr levelMgr;
@@ -42,10 +42,12 @@ public class TeacherMgr : MonoBehaviour {
 
     public PhoneConMgr phoneConMgr;
     public KatalkGameMgr katalkGameMgr;
-    public KatalkDifficulty katalkDifficulty;
+    //public KatalkDifficulty katalkDifficulty;
 
     public SnackGameMgr snackGameMgr;
-    public SnackDifficulty snackDifficulty;
+    //public SnackDifficulty snackDifficulty;
+
+    public DifficultyData difficultyData;
 
     public CoinMgr coinMgr;
     public TutorialMgr tutorialMgr;
@@ -67,17 +69,12 @@ public class TeacherMgr : MonoBehaviour {
 
     void Start ()
     {
-        SetGreen();
+        SetSafe();
     }
 
     public void StartTeacherChange()
     {
-        if (InGameMgr.GameMode.Equals(0))
-            StartCoroutine(TeacherChange(tvGameDifficulty.Red_Min[tvGameDifficulty.Step], tvGameDifficulty.Red_Max[tvGameDifficulty.Step], tvGameDifficulty.Green_Min[tvGameDifficulty.Step], tvGameDifficulty.Green_Max[tvGameDifficulty.Step], numOfPlay));
-        else if (InGameMgr.GameMode.Equals(1))
-            StartCoroutine(TeacherChange(katalkDifficulty.Red_Min[katalkDifficulty.Step], katalkDifficulty.Red_Max[katalkDifficulty.Step], katalkDifficulty.Green_Min[katalkDifficulty.Step], katalkDifficulty.Green_Max[katalkDifficulty.Step], numOfPlay));
-        else if (InGameMgr.GameMode.Equals(2))
-            StartCoroutine(TeacherChange(snackDifficulty.Red_Min[snackDifficulty.Step], snackDifficulty.Red_Max[snackDifficulty.Step], snackDifficulty.Green_Min[snackDifficulty.Step], snackDifficulty.Green_Max[snackDifficulty.Step], numOfPlay));
+        StartCoroutine(TeacherChange(difficultyData.DangerMin[inGameMgr.stage], difficultyData.DangerMax[inGameMgr.stage], difficultyData.SafeMin[inGameMgr.stage], difficultyData.SafeMax[inGameMgr.stage], numOfPlay));
     }
 
     IEnumerator TeacherChange(float Red_min, float Red_max, float Green_min, float Green_max, int numofplay)
@@ -85,7 +82,7 @@ public class TeacherMgr : MonoBehaviour {
         if (isTeacherFront)
         {
             yield return new WaitForSeconds(Random.Range(Red_min, Red_max));
-            SetGreen();
+            SetSafe();
             if (inGameMgr.IsPlayingGame && numofplay.Equals(numOfPlay))
             {
                 StartTeacherChange();
@@ -94,30 +91,15 @@ public class TeacherMgr : MonoBehaviour {
         else
         {
             yield return new WaitForSeconds(Random.Range(Green_min, Green_max));
-            SetOrange(Red_min, Red_max, Green_min, Green_max, numofplay);
+            SetMiddle(Red_min, Red_max, Green_min, Green_max, numofplay);
         }
     }
-	IEnumerator TeacherSee(float Red_min, float Red_max, float Green_min, float Green_max, int numofplay)
+	IEnumerator TeacherSee(float danger_min, float danger_max, float safe_min, float safe_max, int numofplay)
     {
-        float orange_min = 0, orange_max = 0;
+        float middle_min = difficultyData.MiddleMin[inGameMgr.stage], middle_max = difficultyData.MiddleMax[inGameMgr.stage];
 
-        if (InGameMgr.GameMode.Equals(0))
-        {
-            orange_min = tvGameDifficulty.Orange_Min[tvGameDifficulty.Step];
-            orange_max = tvGameDifficulty.Orange_Max[tvGameDifficulty.Step];
-        }
-        else if (InGameMgr.GameMode.Equals(1))
-        {
-            orange_min = katalkDifficulty.Orange_Min[katalkDifficulty.Step];
-            orange_max = katalkDifficulty.Orange_Max[katalkDifficulty.Step];
-        }
-        else if(InGameMgr.GameMode.Equals(2))
-        {
-            orange_min = snackDifficulty.Orange_Min[snackDifficulty.Step];
-            orange_max = snackDifficulty.Orange_Max[snackDifficulty.Step];
-        }
         //Debug.Log("Min: " + orange_min + ", Max: " + orange_max);
-        float OrangeTime = Random.Range(orange_min, orange_max) * itemMgr.OrangeTimeUp;
+        float OrangeTime = Random.Range(middle_min, middle_max) * itemMgr.OrangeTimeUp;
         //Debug.Log("Orangetime: " + OrangeTime);
         if (itemMgr.isGlassOn)
             itemMgr.ConsumeGlasses(OrangeTime);
@@ -126,12 +108,12 @@ public class TeacherMgr : MonoBehaviour {
 
         if (inGameMgr.IsPlayingGame && numofplay.Equals(numOfPlay))
         {
-            SetRed();
-            StartCoroutine(TeacherChange(Red_min, Red_max, Green_min, Green_max, numofplay));
+            SetDanger();
+            StartCoroutine(TeacherChange(danger_min, danger_max, safe_min, safe_max, numofplay));
         }
 
     }
-    public void SetRed()
+    public void SetDanger()
     {
         isTeacherFront = true;
         Teacher_img.color = Red;
@@ -140,7 +122,7 @@ public class TeacherMgr : MonoBehaviour {
         SuspectingSound_AS.Play();
         StartCoroutine(CheckStudent());
     }
-    public void SetGreen()
+    public void SetSafe()
     {
         isTeacherFront = false;
         Teacher_img.color = Green;
@@ -154,14 +136,14 @@ public class TeacherMgr : MonoBehaviour {
         if (InGameMgr.GameMode.Equals(1) || InGameMgr.GameMode.Equals(2))
             StartCoroutine(IncreaseNotice());
     }
-    public void SetOrange(float Red_min, float Red_max, float Green_min, float Green_max, int numofplay)
+    public void SetMiddle(float danger_min, float danger_max, float safe_min, float safe_max, int numofplay)
     {
         WritingSound_AS.Stop();
         Teacher_img.color = Orange;
         OrangeCon_img.sprite = TOrange_sprite[Random.Range(0,2)];
         Teacher_condition[2].SetActive(false);
         Teacher_condition[1].SetActive(true);
-        StartCoroutine(TeacherSee(Red_min, Red_max, Green_min, Green_max, numofplay));
+        StartCoroutine(TeacherSee(danger_min, danger_max, safe_min, safe_max, numofplay));
     }
     IEnumerator ChangeSound_Writing()
     {
@@ -241,8 +223,8 @@ public class TeacherMgr : MonoBehaviour {
                             if (firstNotice)
                             {
                                 noticeStep++;
-                                if (noticeStep >= katalkDifficulty.NoticeDrcrease.Length)
-                                    noticeStep = katalkDifficulty.NoticeDrcrease.Length - 1;
+                                if (noticeStep >= difficultyData.NoticeDecrease.Length)
+                                    noticeStep = difficultyData.NoticeDecrease.Length - 1;
                                 StartCoroutine(DecreaseNotice());
                                 firstNotice = false;
                             }
@@ -280,8 +262,8 @@ public class TeacherMgr : MonoBehaviour {
                             if (firstNotice)
                             {
                                 noticeStep++;
-                                if (noticeStep >= snackDifficulty.NoticeDrcrease.Length)
-                                    noticeStep = snackDifficulty.NoticeDrcrease.Length - 1;
+                                if (noticeStep >= difficultyData.NoticeDecrease.Length)
+                                    noticeStep = difficultyData.NoticeDecrease.Length - 1;
                                 StartCoroutine(DecreaseNotice());
                                 firstNotice = false;
                             }
@@ -312,11 +294,11 @@ public class TeacherMgr : MonoBehaviour {
     {
         tvGameMgr.StopPlusScore();
         tvGameMgr.StopWaitMission();
-        inGameMgr.PlayTime[InGameMgr.GameMode] += (ulong)tvGameDifficulty.Playtime;
+        inGameMgr.PlayTime[InGameMgr.GameMode] += (ulong)inGameMgr.playTimeEach;
         int score = (int)tvGameMgr.Score;
         levelMgr.StatArr[0].ApplyAbility(ref tvGameMgr.Score);
         tvGameMgr.SetBestScore();
-        ulong coinReward = (ulong)coinMgr.GetReward(tvGameDifficulty.Playtime);
+        ulong coinReward = (ulong)coinMgr.GetReward(inGameMgr.playTimeEach);
         CoinMgr.Coin += coinReward;
         coinMgr.setCoinText();
         tvButtonMgr.BGM_as.Stop();
@@ -325,7 +307,7 @@ public class TeacherMgr : MonoBehaviour {
         string scoreR = "점수: " + tvGameMgr.SetPointSpot(tvGameMgr.Score);
         string coinR = "+ " + coinReward;
         levelMgr.StatArr[0].ShowAbility(score, (int)tvGameMgr.Score,  ref scoreR);
-        levelMgr.StatArr[1].ShowAbility(tvGameDifficulty.Playtime * 2, (int)coinReward, ref coinR);
+        levelMgr.StatArr[1].ShowAbility(inGameMgr.playTimeEach * 2, (int)coinReward, ref coinR);
         tvGameMgr.FinalScore_text.text = scoreR;
         tvGameMgr.CoinGet_text.text = coinR;
         
@@ -337,7 +319,7 @@ public class TeacherMgr : MonoBehaviour {
         int score = (int)katalkGameMgr.Score;
         levelMgr.StatArr[0].ApplyAbility(ref katalkGameMgr.Score);
         katalkGameMgr.SetBestScore();
-        ulong coinReward = (ulong)coinMgr.GetReward(katalkDifficulty.Playtime);
+        ulong coinReward = (ulong)coinMgr.GetReward(inGameMgr.playTimeEach);
         CoinMgr.Coin += coinReward;
         coinMgr.setCoinText();
         phoneConMgr.BGM_as.Stop();
@@ -347,7 +329,7 @@ public class TeacherMgr : MonoBehaviour {
         string scoreR = "점수: " + katalkGameMgr.SetPointSpot(katalkGameMgr.Score);
         string coinR = "+ " + coinReward;
         levelMgr.StatArr[0].ShowAbility(score, (int)katalkGameMgr.Score,  ref scoreR);
-        levelMgr.StatArr[1].ShowAbility(katalkDifficulty.Playtime * 2, (int)coinReward, ref coinR);
+        levelMgr.StatArr[1].ShowAbility(inGameMgr.playTimeEach * 2, (int)coinReward, ref coinR);
         katalkGameMgr.CoinGet_text.text = coinR;
         katalkGameMgr.FinalScore_text.text = scoreR;
         if (phoneConMgr.isPhoneOn)
@@ -356,11 +338,11 @@ public class TeacherMgr : MonoBehaviour {
     }
     public void SnackGameOver()
     {
-        inGameMgr.PlayTime[InGameMgr.GameMode] += (ulong)snackDifficulty.Playtime;
+        inGameMgr.PlayTime[InGameMgr.GameMode] += (ulong)inGameMgr.playTimeEach;
         int score = (int)snackGameMgr.Score;
         levelMgr.StatArr[0].ApplyAbility(ref snackGameMgr.Score);
         snackGameMgr.SetBestScore();
-        ulong coinReward = (ulong)coinMgr.GetReward(snackDifficulty.Playtime);
+        ulong coinReward = (ulong)coinMgr.GetReward(inGameMgr.playTimeEach);
         CoinMgr.Coin += coinReward;
         coinMgr.setCoinText();
         snackGameMgr.EatingSnack_AS.Stop();
@@ -369,7 +351,7 @@ public class TeacherMgr : MonoBehaviour {
         string scoreR = "점수: " + snackGameMgr.SetPointSpot(snackGameMgr.Score);
         string coinR = "+ " + coinReward;
         levelMgr.StatArr[0].ShowAbility(score, (int)snackGameMgr.Score, ref scoreR);
-        levelMgr.StatArr[1].ShowAbility(snackDifficulty.Playtime * 2, (int)coinReward, ref coinR);
+        levelMgr.StatArr[1].ShowAbility(inGameMgr.playTimeEach * 2, (int)coinReward, ref coinR);
         snackGameMgr.FinalScore_text.text = scoreR;
         snackGameMgr.CoinGet_text.text = coinR;
         GameOver_Common();
@@ -400,6 +382,7 @@ public class TeacherMgr : MonoBehaviour {
             levelMgr.ProvideExp(snackGameMgr.Score);
         }
 
+        dataMgr.SaveData();
         inGameMgr.CheckReview();
     }
     //bool firstDecrease = false;
@@ -412,13 +395,13 @@ public class TeacherMgr : MonoBehaviour {
         {
             if (phoneConMgr.isPhoneOn)
             {
-                teacherNotice -= katalkDifficulty.NoticeDrcrease[noticeStep];
+                teacherNotice -= (int)difficultyData.NoticeDecrease[noticeStep];
             }
         }
         else if (SceneManager.GetActiveScene().buildIndex.Equals(3))
         {
             if(snackGameMgr.isEating)
-                teacherNotice -= snackDifficulty.NoticeDrcrease[noticeStep];
+                teacherNotice -= (int)difficultyData.NoticeDecrease[noticeStep];
         }
 
         if (isTeacherFront && inGameMgr.IsPlayingGame)
@@ -439,9 +422,9 @@ public class TeacherMgr : MonoBehaviour {
         if (teacherNotice < teacherNoticeMax && inGameMgr.IsPlayingGame)
         {
             if(SceneManager.GetActiveScene().buildIndex.Equals(2))
-                teacherNotice += (int)(teacherNoticeMax * katalkDifficulty.NoticeDrcrease[noticeStep] * 0.01f * 0.9f);//감소량의 90%수준으로 증가
+                teacherNotice += (int)(teacherNoticeMax * difficultyData.NoticeDecrease[noticeStep] * 0.01f * 0.9f);//감소량의 90%수준으로 증가
             else if(SceneManager.GetActiveScene().buildIndex.Equals(3))
-                teacherNotice += (int)(teacherNoticeMax * snackDifficulty.NoticeDrcrease[noticeStep] * 0.01f * 0.9f);//감소량의 90%수준으로 증가
+                teacherNotice += (int)(teacherNoticeMax * difficultyData.NoticeDecrease[noticeStep] * 0.01f * 0.9f);//감소량의 90%수준으로 증가
 
             StartCoroutine(IncreaseNotice());
         }

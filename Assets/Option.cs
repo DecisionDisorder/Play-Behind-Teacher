@@ -154,7 +154,8 @@ public class Option : MonoBehaviour {
     {
         gameSoundVolume = gameSoundVolume_slider.value;
 
-        for (int i = 0; i < EffectSounds_AS.Length; i++)
+        EffectSounds_AS[0].volume = gameSoundVolume_slider.value * 0.6f;
+        for (int i = 1; i < EffectSounds_AS.Length; i++)
         {
             EffectSounds_AS[i].volume = gameSoundVolume_slider.value * 0.8f;
         }
@@ -168,7 +169,6 @@ public class Option : MonoBehaviour {
                 tvButtonMgr.BGM_as.volume = BackgroundVolume_slider.value * 0.5f;
             else if (SceneManager.GetActiveScene().buildIndex.Equals(2))
                 phoneConMgr.BGM_as.volume = BackgroundVolume_slider.value * 0.5f;
-
         }
     }
     void OptionSetting_Sound()
@@ -187,7 +187,8 @@ public class Option : MonoBehaviour {
             phoneConMgr.BGM_as.volume = BackgroundVolume_slider.value * 0.5f;
         }
 
-        for (int i = 0; i < EffectSounds_AS.Length; i++)
+        EffectSounds_AS[0].volume = gameSoundVolume_slider.value * 0.6f;
+        for (int i = 1; i < EffectSounds_AS.Length; i++)
         {
             EffectSounds_AS[i].volume = gameSoundVolume_slider.value * 0.8f;
         }
@@ -379,11 +380,11 @@ public class Option : MonoBehaviour {
         }
         else if(frameK.Equals(1))
         {
-            Application.targetFrameRate = 45;
+            Application.targetFrameRate = 60;
         }
         else// frame: 2
         {
-            Application.targetFrameRate = 60;
+            Application.targetFrameRate = 120;
         }
     }
 

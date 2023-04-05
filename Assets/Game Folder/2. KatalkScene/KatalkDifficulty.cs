@@ -3,7 +3,7 @@ using System.Collections;
 
 public class KatalkDifficulty : MonoBehaviour
 {
-
+    /*
     public int Playtime = 0;
     public float[] Green_Min = new float[5];
     public float[] Green_Max = new float[5];
@@ -45,5 +45,5 @@ public class KatalkDifficulty : MonoBehaviour
         }
         else
             RandomTime--;
-    }
+    }*/
 }

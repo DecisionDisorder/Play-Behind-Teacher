@@ -21,36 +21,57 @@ public class InGameMgr : MonoBehaviour {
     public bool didReviewed = false;
     public GameObject Review_Menu;
 
+    public int playTimeEach;
+
+    public int stage;
+    public DifficultyData difficultyData;
+
     public DataManager dataManager;
     public TutorialMgr tutorialMgr;
-    /*
-    private void Start()
-    {
-        if(SceneManager.GetActiveScene().buildIndex.Equals(0))
-        {
-            if (isFirstBeta)
-            {
-                BetaFeedback_Menu.SetActive(true);
-            }
-        }
-    }*/
+
     private void Update()
     {
-        if (!SceneManager.GetActiveScene().name.Equals("MainScene"))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!isPause)
             {
-                if (!isPause)
-                {
-                    PauseGame();
-                }
-                else
-                {
-                    ResumeGame();
-                }
+                PauseGame();
             }
-        }  
+            else
+            {
+                ResumeGame();
+            }
+        }
     }
+
+    public void StartTimer()
+    {
+        StartCoroutine(GamePlayTimer());
+        StartCoroutine(GameStageTimer());
+    }
+
+    IEnumerator GameStageTimer()
+    {
+        float time = Random.Range(difficultyData.StageTimeMin[stage], difficultyData.StageTimeMax[stage]);
+        
+        yield return new WaitForSeconds(time);
+
+        stage++;
+        
+        if(stage < difficultyData.StageTimeMin.Length - 1)
+            StartCoroutine(GameStageTimer());
+    }
+
+    IEnumerator GamePlayTimer()
+    {
+        yield return new WaitForSeconds(1f);
+
+        playTimeEach++;
+
+        StartCoroutine(GamePlayTimer());
+    }
+
+
     public void Button_PauseMenu(int nKey)
     {
         switch(nKey)

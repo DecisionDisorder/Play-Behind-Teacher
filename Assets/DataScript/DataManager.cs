@@ -156,7 +156,7 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetString("Option_showFPS", showFPS);
         EncryptedPlayerPrefs.SetString("Option_googleLogin", ""+option.googleLogin);
         EncryptedPlayerPrefs.SetString("Option_autoCloud",""+option.autoCloud);
-        EncryptedPlayerPrefs.SetInt("Option_frameKind", option.frameKind);
+        EncryptedPlayerPrefs.SetInt("Option_frameKind_new", option.frameKind);
     }
     public void Save_InGameMgr()
     {
@@ -292,10 +292,10 @@ public class DataManager : MonoBehaviour {
         option.IsHudOn = bool.Parse(EncryptedPlayerPrefs.GetString("Option_IsHudOn", "true"));
         option.IsVibrateOn = bool.Parse(EncryptedPlayerPrefs.GetString("Option_IsVibrateOn", "false"));
         option.smoothGage = bool.Parse(EncryptedPlayerPrefs.GetString("Option_smoothGage", "true"));
-        option.showFPS = bool.Parse(EncryptedPlayerPrefs.GetString("Option_showFPS", "true"));
+        option.showFPS = bool.Parse(EncryptedPlayerPrefs.GetString("Option_showFPS", "false"));
         option.googleLogin = bool.Parse(EncryptedPlayerPrefs.GetString("Option_googleLogin","true"));
         option.autoCloud = bool.Parse(EncryptedPlayerPrefs.GetString("Option_autoCloud", "true"));
-        option.frameKind = EncryptedPlayerPrefs.GetInt("Option_frameKind", 2);
+        option.frameKind = EncryptedPlayerPrefs.GetInt("Option_frameKind_new", 1);
     }
     public void Load_InGameMgr()
     {
@@ -371,8 +371,8 @@ public class DataManager : MonoBehaviour {
     }
     public void Load_DailyGiftMgr()
     {
-        dailyGiftMgr.dayOfyear = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_dayOfyear",0);
-        dailyGiftMgr.year = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_year",2018);
+        dailyGiftMgr.dayOfyear = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_dayOfyear", System.DateTime.Now.DayOfYear - 1);
+        dailyGiftMgr.year = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_year", System.DateTime.Now.Year);
         //dailyGiftMgr.todayGet = bool.Parse(EncryptedPlayerPrefs.GetString("DailyGiftMgr_todayGet","false"));
         dailyGiftMgr.numOfAttend = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_numOfAttend",0);
     }

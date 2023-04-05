@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TvGameMgr : MonoBehaviour {
 
@@ -24,6 +25,7 @@ public class TvGameMgr : MonoBehaviour {
     public int TVPowerMax;
     public int TVPowerMin;
     public bool isPowerMissionOn = false;
+    IEnumerator decreaseEndur;
 
     ulong addingScore = 4;
 
@@ -47,7 +49,8 @@ public class TvGameMgr : MonoBehaviour {
     public TVButtonMgr tvButtonMgr;
     public InGameMgr inGameMgr;
     public TeacherMgr teacherMgr;
-    public TVGameDifficulty tvGameDifficulty;
+    //public TVGameDifficulty tvGameDifficulty;
+    public DifficultyData tvDifficultyData;
     public DataManager dataMgr;
     public SliderColorMgr endurColorMgr;
     public CoinMgr coinMgr;
@@ -84,6 +87,8 @@ public class TvGameMgr : MonoBehaviour {
 
         if (tvButtonMgr.isTvOn)
         {
+            if (decreaseEndur != null)
+                StopCoroutine(decreaseEndur);
             Score += addingScore * 2;
 
             int startValue = Endurance;
@@ -93,8 +98,7 @@ public class TvGameMgr : MonoBehaviour {
                 Endurance += 30;
             else
                 Endurance = EnduranceMax;
-
-
+            
             if (option.smoothGage)
                 Endur_gageMove.StartGageMove(startValue, Endurance, false);
             else
@@ -142,14 +146,15 @@ public class TvGameMgr : MonoBehaviour {
     }
     public void StartDecreaseEndurance()
     {
-        StartCoroutine(DecreaseEndurance());
+        decreaseEndur = DecreaseEndurance();
+        StartCoroutine(decreaseEndur);
     }
     IEnumerator DecreaseEndurance()
     {
-        yield return new WaitForSeconds(tvGameDifficulty.Period);
+        yield return new WaitForSeconds(tvDifficultyData.Period);
         
         int startValue = Endurance;
-        int endurM = (int)(EnduranceMax * tvGameDifficulty.DecreaseEndur[tvGameDifficulty.Step]);
+        int endurM = (int)(EnduranceMax * tvDifficultyData.DecreasePortion[inGameMgr.stage] * 0.01f);
         levelMgr.StatArr[2].ApplyAbility(ref endurM);
         Endurance -= endurM;
 
@@ -158,12 +163,11 @@ public class TvGameMgr : MonoBehaviour {
         else
             Endurance_slider.value = Endurance * 10;
 
-
         int percentage = Endurance * 100 / EnduranceMax;
         endurColorMgr.SetColor(percentage);
 
         if (!tvButtonMgr.isTvOn && inGameMgr.IsPlayingGame && Endurance > 0)
-            StartCoroutine(DecreaseEndurance());
+            StartDecreaseEndurance();
         else if (Endurance <= 0 && !teacherMgr.TestMode)
         {
             if (!tutorialMgr.isTutorialOn)
@@ -319,7 +323,7 @@ public class TvGameMgr : MonoBehaviour {
             if(p < percentageOfCoin)
             {
                 kind = "코인";
-                reward = (ulong)(targetTVPower / 2) * 5;
+                reward = (ulong)(targetTVPower * 4);
                 CoinMgr.Coin += reward;
                 CoinMgr.accumulatedCoins += reward;
                 coinMgr.SetAddedCoin((int)reward);
@@ -362,7 +366,7 @@ public class TvGameMgr : MonoBehaviour {
             numOfTVPower = 0;
             Mission_Backimg.SetActive(true);
             isPowerMissionOn = true;
-            Mission_text.text = "TV껐다 켜기: "+targetTVPower+"회";
+            Mission_text.text = "TV껐다 켜기: " + targetTVPower + "회";
         }
     }
     public void StopPlusScore()
@@ -375,7 +379,9 @@ public class TvGameMgr : MonoBehaviour {
     }
     public void ResetGame()
     {
-        teacherMgr.SetGreen();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        /*
+        teacherMgr.SetSafe();
         teacherMgr.NormalCon.SetActive(true);
         teacherMgr.GameOverCon.SetActive(false);
         teacherMgr.GameOverBySleep.SetActive(false);
@@ -389,8 +395,8 @@ public class TvGameMgr : MonoBehaviour {
         Mission_Backimg.SetActive(false);
         tvButtonMgr.ChannelSign_RC.SetActive(false);
         targetChannel = 0;
-        tvGameDifficulty.Playtime = 0;
-        tvGameDifficulty.Step = 0;
+        inGameMgr.playTimeEach = 0;
+        inGameMgr.stage = 0;
         Score_text.text = "점수: 0";
         coinMgr.ResetAddedCoin();
         Endurance_slider.value = Endurance_slider.maxValue;
@@ -399,7 +405,8 @@ public class TvGameMgr : MonoBehaviour {
         endurColorMgr.SleepyEffect.SetActive(false);
         inGameMgr.BfStartGame.SetActive(true);
         inGameMgr.IsPlayingGame = true;
-        GameOver_Menu.SetActive(false);
+        GameOver_Menu.SetActive(false);*/
+        
     }
     public string SetPointSpot(ulong score)
     {

@@ -29,7 +29,7 @@ public class SinematicController : MonoBehaviour {
         }
         if(Input.GetKey(KeyCode.W))
         {
-            teacherMgr.SetRed();
+            teacherMgr.SetDanger();
         }
         if(Input.GetKey(KeyCode.E))
         {

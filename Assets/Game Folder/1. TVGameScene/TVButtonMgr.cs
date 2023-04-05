@@ -69,7 +69,7 @@ public class TVButtonMgr : MonoBehaviour {
                     if (!startgame)
                     {
                         inGameMgr.BfStartGame.SetActive(false);
-                        tvGameDifficulty.StartTimePlus();
+                        inGameMgr.StartTimer();
                         BGM_as.Play();
                         tvGameMgr.StartPlusScore();
                         teacherMgr.StartTeacherChange();

@@ -5,8 +5,6 @@ using GooglePlayGames.BasicApi.SavedGame;
 using System;
 using GooglePlayGames.BasicApi;
 
-
-
 public class GPGSMng : MonoBehaviour
 {
     //public GameObject LogoutMessage;

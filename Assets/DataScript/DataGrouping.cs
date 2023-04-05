@@ -12,7 +12,7 @@ public class DataGrouping {
     public bool Option_IsVibrateOn;
     public float Option_gameSoundVolume;
     public float Option_BackgroundVolume;
-    public bool Option_showFPS;
+    public bool Option_showFPS = false;
     public bool Option_smoothGage;
     public bool Option_googleLogin;
     public bool Option_autoCloud;

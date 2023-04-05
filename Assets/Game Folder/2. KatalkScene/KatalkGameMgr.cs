@@ -10,7 +10,7 @@ public class KatalkGameMgr : MonoBehaviour {
     public PhoneConMgr phoneConMgr;
     public InGameMgr inGameMgr;
     public TeacherMgr teacherMgr;
-    public KatalkDifficulty katalkDifficulty;
+    public DifficultyData katalkDifficultyData;
     public DataManager dataMgr;
     public SliderColorMgr endurColorMgr;
     public CoinMgr coinMgr;
@@ -45,6 +45,7 @@ public class KatalkGameMgr : MonoBehaviour {
     public int Endurance = 1000;
     public int EnduranceMax = 1000;
     public ulong addingScore = 4;
+    IEnumerator decreaseEndur;
 
     string message = "";
 
@@ -387,6 +388,8 @@ public class KatalkGameMgr : MonoBehaviour {
         {
             if (phoneConMgr.isPhoneOn)
             {
+                if (decreaseEndur != null)
+                    StopCoroutine(decreaseEndur);
                 Score += addingScore * 2;
 
                 int startValue = Endurance;
@@ -442,14 +445,15 @@ public class KatalkGameMgr : MonoBehaviour {
     }
     public void StartDecreaseEndurance()
     {
-        StartCoroutine(DecreaseEndurance());
+        decreaseEndur = DecreaseEndurance();
+        StartCoroutine(decreaseEndur);
     }
     IEnumerator DecreaseEndurance()
     {
-        yield return new WaitForSeconds(katalkDifficulty.Period);
+        yield return new WaitForSeconds(katalkDifficultyData.Period);
 
         int startValue = Endurance;
-        int endurM = (int)(EnduranceMax * katalkDifficulty.DecreaseEndur[katalkDifficulty.Step]);
+        int endurM = (int)(EnduranceMax * katalkDifficultyData.DecreasePortion[inGameMgr.stage] * 0.01f);
         levelMgr.StatArr[2].ApplyAbility(ref endurM);
         Endurance -= endurM;
 
@@ -462,7 +466,7 @@ public class KatalkGameMgr : MonoBehaviour {
         endurColorMgr.SetColor(percentage);
 
         if (!phoneConMgr.isPhoneOn && inGameMgr.IsPlayingGame && Endurance > 0)
-            StartCoroutine(DecreaseEndurance());
+            StartDecreaseEndurance();
         else if (Endurance <= 0 && !teacherMgr.TestMode)
         {
             if (!tutorialMgr.isTutorialOn)
@@ -491,7 +495,7 @@ public class KatalkGameMgr : MonoBehaviour {
     }
     public void ResetGame()
     {
-        teacherMgr.SetGreen();//선생님 상태 초기화
+        teacherMgr.SetSafe();//선생님 상태 초기화
         teacherMgr.NormalCon.SetActive(true);
         teacherMgr.GameOverBySleep.SetActive(false);
         teacherMgr.GameOverByContent.SetActive(false);
@@ -512,8 +516,8 @@ public class KatalkGameMgr : MonoBehaviour {
         talkMessage_text.text = "";
         stringPos = 0;
         phoneConMgr.OpenPhone_text.text = "↑↑폰↑↑";
-        katalkDifficulty.Playtime = 0;
-        katalkDifficulty.Step = 0;
+        inGameMgr.playTimeEach = 0;
+        inGameMgr.stage = 0;
         Score_text.text = "점수: 0";
         coinMgr.ResetAddedCoin();
         Endurance_slider.value = Endurance_slider.maxValue;

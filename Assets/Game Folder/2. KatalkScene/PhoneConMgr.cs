@@ -16,10 +16,9 @@ public class PhoneConMgr : MonoBehaviour {
     public GameObject Phone;
 
     public Animation PhoneOnOff_animation;
-    public Animation buttonOnOff_animation;
 
     public KatalkGameMgr katalkGameMgr;
-    public KatalkDifficulty katalkDifficulty;
+    public DifficultyData katalkDifficultyData;
     public TeacherMgr teacherMgr;
     public InGameMgr inGameMgr;
     public TutorialMgr tutorialMgr;
@@ -160,7 +159,6 @@ public class PhoneConMgr : MonoBehaviour {
         {
             BGM_as.Pause();
             PhoneOnOff_animation.CrossFade("ClosingPhone");
-            buttonOnOff_animation.CrossFade("phoneOnOffbutton_(OFF)");
             isPhoneOn = false;
             Student.sprite = studentSprites[0];
             OnXXX_Students[0].SetActive(true);
@@ -168,7 +166,7 @@ public class PhoneConMgr : MonoBehaviour {
             OpenPhone_text.text = "↑↑폰↑↑";
             Message_NoMission();
             katalkGameMgr.StartDecreaseEndurance();
-            StartCoroutine(WaitForAnimation_phone());
+            //StartCoroutine(WaitForAnimation_phone());
         }
         else
         {
@@ -177,7 +175,7 @@ public class PhoneConMgr : MonoBehaviour {
                 inGameMgr.BfStartGame.SetActive(false);
                 BGM_as.Play();
                 katalkGameMgr.StartPlusScore();
-                katalkDifficulty.StartTimePlus();
+                inGameMgr.StartTimer();
                 teacherMgr.StartTeacherChange();
                 startgame = true;
             }
@@ -191,7 +189,6 @@ public class PhoneConMgr : MonoBehaviour {
             Message_NoMission();
             OpenPhone_text.text = "↓↓폰↓↓";
             PhoneOnOff_animation.Play();
-            buttonOnOff_animation.Play();
         }
     }
     IEnumerator WaitPhonepos()

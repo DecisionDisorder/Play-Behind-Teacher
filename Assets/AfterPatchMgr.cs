@@ -46,7 +46,7 @@ public class AfterPatchMgr : MonoBehaviour {
     }
     public void OpenBlog()
     {
-        Application.OpenURL("https://blog.naver.com/guswhd990507/221340216170");
+        Application.OpenURL("https://blog.naver.com/guswhd990507/222471412378");
     }
 	void SaveVersionCode()
     {
