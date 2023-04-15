@@ -200,6 +200,9 @@ public class BackUpDataMgr : MonoBehaviour {
         
         Cloud_Manager.LoadFromCloud();
     }
+    /// <summary>
+    /// 클라우드에서 불러온 데이터 복원
+    /// </summary>
     public void DeseralizeData()
     {
         string serialized = SerializationData.ByteToString(Cloud_Manager.GameData);
@@ -207,6 +210,9 @@ public class BackUpDataMgr : MonoBehaviour {
         SetClassToVar();
 
     }
+    /// <summary>
+    /// 클라우드 메뉴 On/Off
+    /// </summary>
     public void RecoveryMenuOnOff(int key)
     {
         switch(key)
@@ -222,21 +228,11 @@ public class BackUpDataMgr : MonoBehaviour {
                 BackkeyMgr.numOfOpenedMenus--;
                 Recovery_Menu.SetActive(false);
                 break;
-                /*
-            case 2://EmergencyMenu cancel
-                DataLoss_RecoveryMenu.SetActive(false);
-                break;*/
         }
     }
-    /*
-    public void SerializedDataRecovery()
-    {
-        LoadAll();
-        if(Recovery_Menu.activeInHierarchy)
-            Recovery_Menu.SetActive(false);
-        if (DataLoss_RecoveryMenu.activeInHierarchy)
-            DataLoss_RecoveryMenu.SetActive(false);
-    }*/
+    /// <summary>
+    /// 현재 시간을 한글의 형태로 리턴
+    /// </summary>
     public string DateStringSet()
     {
         string year,month,day,hour,minute,second,AMPM;
@@ -250,18 +246,11 @@ public class BackUpDataMgr : MonoBehaviour {
         return year + "년 " + month + "월 " + day + "일\n" + AMPM + " " + hour + "시 " + minute + "분 " + second + "초";
     }
     //==============================Save=================================
-
+    /// <summary>
+    /// 인게임 데이터를 하나의 오브젝트로 모아주는 함수
+    /// </summary>
     public void SetDataToClass()
     {
-        /*if (!SceneManager.GetActiveScene().name.Equals("MainScene"))
-        {
-            if (InGameMgr.GameMode.Equals(0))
-            {
-            }
-            else if (InGameMgr.GameMode.Equals(1))
-            {
-            }
-        }*/
         if (tvGameMgr != null)
         {
             dgdata.TvGameMgr_BestScore = tvGameMgr.BestScore;
@@ -366,17 +355,11 @@ public class BackUpDataMgr : MonoBehaviour {
             dgdata.AchievementMgr_steps[i] = achievementMgr.achievements[i].step;
         }
     }
+    /// <summary>
+    /// 모아둔 데이터를 인게임에 적용
+    /// </summary>
     public void SetClassToVar()
     {
-        /*if (!SceneManager.GetActiveScene().name.Equals("MainScene"))
-        {
-            if (InGameMgr.GameMode.Equals(0))
-            {
-            }
-            else if (InGameMgr.GameMode.Equals(1))
-            {
-            }
-        }*/
         if (tvGameMgr != null)
         {
             tvGameMgr.BestScore = dgdata.TvGameMgr_BestScore;
@@ -495,14 +478,4 @@ public class BackUpDataMgr : MonoBehaviour {
 
         dataManager.SaveData();
     }
-    /*
-    public bool JudgeDataloss(string data)
-    {
-        if (!data.Equals("") && inGameMgr.numOfFinish.Equals(0))
-        {
-            return true;
-        }
-        else
-            return false;
-    }*/
 }

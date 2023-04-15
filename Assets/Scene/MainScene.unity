@@ -43237,7 +43237,6 @@ MonoBehaviour:
   RewardScore_Mission2: 0
   RewardCoin_Mission2: 0
   PointerBar: {fileID: 0}
-  greenmode_text: {fileID: 0}
 --- !u!1 &876748862
 GameObject:
   m_ObjectHideFlags: 0
@@ -46629,7 +46628,7 @@ MonoBehaviour:
   RandomItem_Menu: {fileID: 568493071}
   OpenRT_button: {fileID: 492293064}
   Reset_button: {fileID: 1435630440}
-  LightEffect: {fileID: 39361324}
+  lightEffect: {fileID: 39361324}
   RandomItem_MenuAni: {fileID: 568493076}
   OpenRandomItem_ani: {fileID: 1842208348}
   ItemAppear_ani: {fileID: 1849141892}
@@ -48596,7 +48595,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &984813496
 RectTransform:
   m_ObjectHideFlags: 0

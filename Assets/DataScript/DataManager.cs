@@ -2,8 +2,12 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
+/// <summary>
+/// 데이터 저장/불러오기 관리 시스템 클래스
+/// </summary>
 public class DataManager : MonoBehaviour {
 
+    // 각종 저장할 데이터를 보유하고 있는 관리 클래스
     public TvGameMgr tvgameMgr;
     public KatalkGameMgr katalkGameMgr;
     public SnackGameMgr snackGameMgr;
@@ -24,6 +28,9 @@ public class DataManager : MonoBehaviour {
 
     public BackUpDataMgr backUpDataMgr;
 
+    /// <summary>
+    /// 클라우드 불러오기 직후인지 여부
+    /// </summary>
     public bool isAfterCloudLoad = false;
     
 
@@ -39,6 +46,9 @@ public class DataManager : MonoBehaviour {
         LoadData();
     }
     
+    /// <summary>
+    /// 로컬 데이터 저장
+    /// </summary>
     public void SaveData()
     {
         if (tvgameMgr != null)
@@ -79,16 +89,19 @@ public class DataManager : MonoBehaviour {
                 isAfterCloudLoad = false;
                 BackkeyMgr.numOfOpenedMenus = 0;
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                //mainSceneMgr.ReloadGame();
-                //DataLoss_RecoveryMenu.SetActive(false);
             }
         }
-        //Debug.Log("Save Completed");
     }
+    /// <summary>
+    /// 씬 리로드
+    /// </summary>
     public void reload()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    /// <summary>
+    /// 로컬 데이터 불러오기
+    /// </summary>
     public void LoadData()
     {
         if (tvgameMgr != null)
@@ -122,6 +135,11 @@ public class DataManager : MonoBehaviour {
             Load_CompensationMgr();
         }
     }
+
+    #region 데이터 저장 함수 모음
+    /// <summary>
+    /// TV 게임 데이터 저장
+    /// </summary>
     public void Save_TVGameMgr()
     {
         string bestscore = "" + tvgameMgr.BestScore;
@@ -129,6 +147,9 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetInt("TvGameMgr_numOfMissionClear", tvgameMgr.numOfMissionClear);
         EncryptedPlayerPrefs.SetString("TvGameMgr_FailedLeaderboard","" + tvgameMgr.FailedLeaderboard);
     }
+    /// <summary>
+    /// 카톡 게임 데이터 저장
+    /// </summary>
     public void Save_KatalkGameMgr()
     {
         EncryptedPlayerPrefs.SetString("KatalkGameMgr_BestScore", "" + katalkGameMgr.BestScore);
@@ -136,12 +157,18 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetString("KatalkGameMgr_isFirstKatalk", "" + katalkGameMgr.isFirstKatalk);
         EncryptedPlayerPrefs.SetString("KatalkGameMgr_FailedLeaderboard", "" + katalkGameMgr.FailedLeaderboard);
     }
+    /// <summary>
+    /// 과자 게임 데이터 저장
+    /// </summary>
     public void Save_SnackGameMgr()
     {
         EncryptedPlayerPrefs.SetString("SnackGameMgr_BestScore", "" + snackGameMgr.BestScore);
         EncryptedPlayerPrefs.SetInt("SnackGameMgr_numOfMissionClear",snackGameMgr.numOfMissionClear);
         EncryptedPlayerPrefs.SetString("SnackGameMgr_FailedLeaderboard", "" + snackGameMgr.FailedLeaderboard);
     }
+    /// <summary>
+    /// 설정 데이터 저장
+    /// </summary>
     public void Save_Option()
     {
         string isHudOn = "" + option.IsHudOn;
@@ -158,6 +185,9 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetString("Option_autoCloud",""+option.autoCloud);
         EncryptedPlayerPrefs.SetInt("Option_frameKind_new", option.frameKind);
     }
+    /// <summary>
+    /// 공통 게임 데이터 저장
+    /// </summary>
     public void Save_InGameMgr()
     {
         for (int i = 0; i < inGameMgr.PlayTime.Length; i++)
@@ -168,8 +198,10 @@ public class DataManager : MonoBehaviour {
         }
         EncryptedPlayerPrefs.SetInt("InGameMgr_numOfFinish", inGameMgr.numOfFinish);
         EncryptedPlayerPrefs.SetString("InGameMgr_didReviewed",""+inGameMgr.didReviewed);
-        //EncryptedPlayerPrefs.SetString("InGameMgr_isFirstBeta", ""+inGameMgr.isFirstBeta);
     }
+    /// <summary>
+    /// 코인 데이터 저장
+    /// </summary>
     public void Save_CoinMgr()
     {
         string coin = "" + CoinMgr.Coin;
@@ -177,6 +209,9 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetString("CoinMgr_Coin", coin);
         EncryptedPlayerPrefs.SetString("CoinMgr_accumulatedCoin", Acdcoin);
     }
+    /// <summary>
+    /// 아이템 데이터 저장
+    /// </summary>
     public void Save_ItemMgr()
     {
         for (int i = 0; i < itemMgr.sleepingGun.Length; i++)
@@ -198,6 +233,9 @@ public class DataManager : MonoBehaviour {
         EncryptedPlayerPrefs.SetInt("ItemMgr_ResetTime", itemMgr.ResetTime);
         EncryptedPlayerPrefs.SetString("ItemMgr_isFirstItem", "" + itemMgr.isFirstItem);
     }
+    /// <summary>
+    /// 스마트폰 데이터 저장
+    /// </summary>
     public void Save_PhoneStore()
     {
         EncryptedPlayerPrefs.SetInt("PhoneStore_SelectedPhoneCode",phoneStore.SelectedPhoneCode);
@@ -206,6 +244,9 @@ public class DataManager : MonoBehaviour {
             EncryptedPlayerPrefs.SetString("PhoneStore_Phones"+i,phoneStore.Phones[i].hasThisPhone.ToString());
         }
     }
+    /// <summary>
+    /// 간식 상점 데이터 저장
+    /// </summary>
     public void Save_SnackStore()
     {
         for (int i = 1; i < snackStore.Buscuits.Length; i++)
@@ -216,15 +257,24 @@ public class DataManager : MonoBehaviour {
         }
         EncryptedPlayerPrefs.SetInt("SnackStore_selectedBuscuit",snackStore.selectedBuscuit);
     }
+    /// <summary>
+    /// 튜토리얼 데이터 저장
+    /// </summary>
     public void Save_TutorialMgr()
     {
         for (int i = 0; i < tutorialMgr.didTutorialComplete.Length; i++)
             EncryptedPlayerPrefs.SetString("didTutorialComplete" + i, "" + tutorialMgr.didTutorialComplete[i]);
     }
+    /// <summary>
+    /// 광고 데이터 저장
+    /// </summary>
     public void Save_Admanager()
     {
         EncryptedPlayerPrefs.SetInt("AdManager_numOfAdView", adManager.numOfAdView);
     }
+    /// <summary>
+    /// 이벤트 데이터 저장
+    /// </summary>
     public void Save_EventMgr()
     {
         EncryptedPlayerPrefs.SetString("EventMgr_didFixedEventRewarded0", eventMgr.didFixedEventRewarded[0].ToString());
@@ -232,6 +282,9 @@ public class DataManager : MonoBehaviour {
 
         EncryptedPlayerPrefs.SetString("MainSceneMgr_isMiddleUIOn", mainSceneMgr.isMiddleUIOn.ToString());
     }
+    /// <summary>
+    /// 출석 보상 데이터 저장
+    /// </summary>
     public void Save_DailyGiftMgr()
     {
         EncryptedPlayerPrefs.SetInt("DailyGiftMgr_dayOfyear", dailyGiftMgr.dayOfyear);
@@ -239,21 +292,33 @@ public class DataManager : MonoBehaviour {
         //EncryptedPlayerPrefs.SetString("DailyGiftMgr_todayGet", dailyGiftMgr.todayGet.ToString());
         EncryptedPlayerPrefs.SetInt("DailyGiftMgr_numOfAttend",dailyGiftMgr.numOfAttend);
     }
+    /// <summary>
+    /// 티켓 아이템 데이터 저장
+    /// </summary>
     public void Save_TicketMgr()
     {
         EncryptedPlayerPrefs.SetInt("TicketMgr_RandomItemTicket_amount",ticketMgr.RandomItemTicket_amount);
         EncryptedPlayerPrefs.SetInt("TicketMgr_NormalItemTicket_amount", ticketMgr.NormalItemTicket_amount);
         EncryptedPlayerPrefs.SetInt("TicketMgr_HighRankItemTicket_amount", ticketMgr.HighRankItemTicket_amount);
     }
+    /// <summary>
+    /// 도전과제 데이터 저장
+    /// </summary>
     public void Save_AchievementMgr()
     {
         for (int i = 0; i < achievementMgr.achievements.Length; i++)
             EncryptedPlayerPrefs.SetInt("AchievementMgr_step" + i, achievementMgr.achievements[i].step);
     }
+    /// <summary>
+    /// 보상 데이터 저장
+    /// </summary>
     public void Save_CompensationMgr()
     {
         EncryptedPlayerPrefs.SetString("CompensationMgr_offered",CompensationMgr.offered+"");
     }
+    /// <summary>
+    /// 레벨 데이터 저장
+    /// </summary>
     public void Save_LevelMgr()
     {
         EncryptedPlayerPrefs.SetInt("LevelMgr_Level", levelMgr.Level);
@@ -265,13 +330,20 @@ public class DataManager : MonoBehaviour {
             EncryptedPlayerPrefs.SetInt("LevelMgr_statLevel" + i, levelMgr.StatArr[i].statLevel);
         }
     }
-    //==============================Load=================================
+    #endregion
+    #region 데이터 불러오기 함수 모음
+    /// <summary>
+    /// TV 게임 데이터 불러오기
+    /// </summary>
     public void Load_TVGameMgr()
     {
         tvgameMgr.BestScore = ulong.Parse(EncryptedPlayerPrefs.GetString("TvGameMgr_BestScore", "0"));
         tvgameMgr.numOfMissionClear = EncryptedPlayerPrefs.GetInt("TvGameMgr_numOfMissionClear", 0);
         tvgameMgr.FailedLeaderboard = bool.Parse(EncryptedPlayerPrefs.GetString("TvGameMgr_FailedLeaderboard", "true"));
     }
+    /// <summary>
+    /// 카톡 게임 데이터 불러오기
+    /// </summary>
     public void Load_KatalkGameMgr()
     {
         katalkGameMgr.BestScore = ulong.Parse(EncryptedPlayerPrefs.GetString("KatalkGameMgr_BestScore", "0"));
@@ -279,12 +351,19 @@ public class DataManager : MonoBehaviour {
         katalkGameMgr.isFirstKatalk = bool.Parse(EncryptedPlayerPrefs.GetString("KatalkGameMgr_isFirstKatalk", "true"));
         katalkGameMgr.FailedLeaderboard = bool.Parse(EncryptedPlayerPrefs.GetString("KatalkGameMgr_FailedLeaderboard", "true"));
     }
+    /// <summary>
+    /// 간식 게임 데이터 불러오기
+    /// </summary>
     public void Load_SnackGameMgr()
     {
         snackGameMgr.BestScore = ulong.Parse(EncryptedPlayerPrefs.GetString("SnackGameMgr_BestScore", "0"));
         snackGameMgr.numOfMissionClear = EncryptedPlayerPrefs.GetInt("SnackGameMgr_numOfMissionClear", 0);
         snackGameMgr.FailedLeaderboard = bool.Parse(EncryptedPlayerPrefs.GetString("SnackGameMgr_FailedLeaderboard", "true"));
     }
+
+    /// <summary>
+    /// 설정 데이터 불러오기
+    /// </summary>
     public void Load_Option()
     {
         option.gameSoundVolume = EncryptedPlayerPrefs.GetFloat("Option_gameSoundVolume", 1.0f);
@@ -297,6 +376,9 @@ public class DataManager : MonoBehaviour {
         option.autoCloud = bool.Parse(EncryptedPlayerPrefs.GetString("Option_autoCloud", "true"));
         option.frameKind = EncryptedPlayerPrefs.GetInt("Option_frameKind_new", 1);
     }
+    /// <summary>
+    /// 공통 게임 데이터 불러오기
+    /// </summary>
     public void Load_InGameMgr()
     {
         for (int i = 0; i < inGameMgr.PlayTime.Length; i++)
@@ -306,13 +388,18 @@ public class DataManager : MonoBehaviour {
         }
         inGameMgr.numOfFinish = EncryptedPlayerPrefs.GetInt("InGameMgr_numOfFinish", 0);
         inGameMgr.didReviewed = bool.Parse(EncryptedPlayerPrefs.GetString("InGameMgr_didReviewed","false"));
-        //inGameMgr.isFirstBeta = bool.Parse(EncryptedPlayerPrefs.GetString("InGameMgr_isFirstBeta","true"));
     }
+    /// <summary>
+    /// 코인 데이터 불러오기
+    /// </summary>
     public void Load_CoinMgr()
     {
         CoinMgr.Coin = ulong.Parse(EncryptedPlayerPrefs.GetString("CoinMgr_Coin", "0"));
         CoinMgr.accumulatedCoins = ulong.Parse(EncryptedPlayerPrefs.GetString("CoinMgr_accumulatedCoin", "0"));
     }
+    /// <summary>
+    /// 아이템 데이터 불러오기
+    /// </summary>
     public void Load_ItemMgr()
     {
         for (int i = 0; i < itemMgr.sleepingGun.Length; i++)
@@ -335,6 +422,9 @@ public class DataManager : MonoBehaviour {
         itemMgr.ResetTime = EncryptedPlayerPrefs.GetInt("ItemMgr_ResetTime", itemMgr.ResetTime);
         itemMgr.isFirstItem = bool.Parse(EncryptedPlayerPrefs.GetString("ItemMgr_isFirstItem", "true"));
     }
+    /// <summary>
+    /// 스마트폰 데이터 불러오기
+    /// </summary>
     public void Load_PhoneStore()
     {
         phoneStore.SelectedPhoneCode = EncryptedPlayerPrefs.GetInt("PhoneStore_SelectedPhoneCode",0);
@@ -343,6 +433,9 @@ public class DataManager : MonoBehaviour {
             phoneStore.Phones[i].hasThisPhone = bool.Parse(EncryptedPlayerPrefs.GetString("PhoneStore_Phones" + i,"false"));
         }
     }
+    /// <summary>
+    /// 간식 상점 데이터 불러오기
+    /// </summary>
     public void Load_SnackStore()
     {
         for (int i = 0; i < snackStore.Buscuits.Length; i++)
@@ -353,15 +446,24 @@ public class DataManager : MonoBehaviour {
         }
         snackStore.selectedBuscuit = EncryptedPlayerPrefs.GetInt("SnackStore_selectedBuscuit",0);
     }
+    /// <summary>
+    /// 튜토리얼 데이터 불러오기
+    /// </summary>
     public void Load_TutorialMgr()
     {
         for (int i = 0; i < tutorialMgr.didTutorialComplete.Length; i++)
             tutorialMgr.didTutorialComplete[i] = bool.Parse(EncryptedPlayerPrefs.GetString("didTutorialComplete" + i, "false"));
     }
+    /// <summary>
+    /// 광고 데이터 불러오기
+    /// </summary>
     public void Load_AdManager()
     {
         adManager.numOfAdView = EncryptedPlayerPrefs.GetInt("AdManager_numOfAdView", 0);
     }
+    /// <summary>
+    /// 이벤트 데이터 불러오기
+    /// </summary>
     public void Load_EventMgr()
     {
         eventMgr.didFixedEventRewarded[0] = bool.Parse(EncryptedPlayerPrefs.GetString("EventMgr_didFixedEventRewarded0", "false"));
@@ -369,6 +471,9 @@ public class DataManager : MonoBehaviour {
 
         mainSceneMgr.isMiddleUIOn = bool.Parse(EncryptedPlayerPrefs.GetString("MainSceneMgr_isMiddleUIOn", "true"));
     }
+    /// <summary>
+    /// 출석 보상 데이터 불러오기
+    /// </summary>
     public void Load_DailyGiftMgr()
     {
         dailyGiftMgr.dayOfyear = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_dayOfyear", System.DateTime.Now.DayOfYear - 1);
@@ -376,21 +481,33 @@ public class DataManager : MonoBehaviour {
         //dailyGiftMgr.todayGet = bool.Parse(EncryptedPlayerPrefs.GetString("DailyGiftMgr_todayGet","false"));
         dailyGiftMgr.numOfAttend = EncryptedPlayerPrefs.GetInt("DailyGiftMgr_numOfAttend",0);
     }
+    /// <summary>
+    /// 티켓 아이템 데이터 불러오기
+    /// </summary>
     public void Load_TicketMgr()
     {
         ticketMgr.RandomItemTicket_amount = EncryptedPlayerPrefs.GetInt("TicketMgr_RandomItemTicket_amount", 0);
         ticketMgr.NormalItemTicket_amount = EncryptedPlayerPrefs.GetInt("TicketMgr_NormalItemTicket_amount", 0);
         ticketMgr.HighRankItemTicket_amount = EncryptedPlayerPrefs.GetInt("TicketMgr_HighRankItemTicket_amount", 0);
     }
+    /// <summary>
+    /// 도전과제 데이터 불러오기
+    /// </summary>
     public void Load_AchievementMgr()
     {
         for (int i = 0; i < achievementMgr.achievements.Length; i++)
             achievementMgr.achievements[i].step = EncryptedPlayerPrefs.GetInt("AchievementMgr_step" + i, 0);
     }
+    /// <summary>
+    /// 보상 데이터 불러오기
+    /// </summary>
     public void Load_CompensationMgr()
     {
         CompensationMgr.offered = bool.Parse(EncryptedPlayerPrefs.GetString("CompensationMgr_offered","false"));
     }
+    /// <summary>
+    /// 레벨 데이터 불러오기
+    /// </summary>
     public void Load_LevelMgr()
     {
         levelMgr.Level = EncryptedPlayerPrefs.GetInt("LevelMgr_Level", 1);
@@ -402,4 +519,5 @@ public class DataManager : MonoBehaviour {
             levelMgr.StatArr[i].statLevel = EncryptedPlayerPrefs.GetInt("LevelMgr_statLevel" + i);
         }
     }
+    #endregion
 }

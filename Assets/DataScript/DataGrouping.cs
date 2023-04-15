@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// 인게임 데이터 모음 클래스
+/// </summary>
 [System.Serializable]
 public class DataGrouping {
 

@@ -12974,7 +12974,6 @@ GameObject:
   - component: {fileID: 628266047}
   - component: {fileID: 628266046}
   - component: {fileID: 628266048}
-  - component: {fileID: 628266049}
   - component: {fileID: 628266051}
   - component: {fileID: 628266052}
   m_Layer: 0
@@ -13177,18 +13176,6 @@ MonoBehaviour:
   levelMgr: {fileID: 1755067421}
   backUpDataMgr: {fileID: 628266052}
   isAfterCloudLoad: 0
---- !u!114 &628266049
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 628266043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9143b6ac13564e647bf029b33c2c016e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &628266051
 MonoBehaviour:
   m_ObjectHideFlags: 0

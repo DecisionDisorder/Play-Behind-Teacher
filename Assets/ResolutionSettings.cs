@@ -2,6 +2,9 @@
 using System.Collections;
 using UnityEngine.UI;
 
+/// <summary>
+/// (Unused) 해상도 대응 설정 클래스
+/// </summary>
 public class ResolutionSettings : MonoBehaviour {
 
     public CanvasScaler canvas;
