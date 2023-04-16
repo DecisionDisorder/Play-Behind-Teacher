@@ -68,6 +68,7 @@
 	<figcaption>[선생님께 걸리고 게임오버 된 화면]</figcaption>
 	<img src="/Screenshots/5.jpg" width=30% height=30%/ alt="선생님께 걸리고 게임오버 된 화면">  
 </figure>
+</p>
 
 ## 기술 관련 소개
 ### [개발환경 및 기술 스택]
