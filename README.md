@@ -54,6 +54,11 @@
 
 ## 기술 관련 소개
 ### [개발환경 및 기술 스택]
+- Unity 2020.2.4f1 + C#
+- Visual Studio 2019
+- Google Play Game Service 0.10.12
+- Google Mobile Ads SDK 6.0.2
+- VCS: Unity Collaborate → GitHub
 
 ### [개발 이슈]
 
