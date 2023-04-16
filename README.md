@@ -38,9 +38,23 @@
 - 매일 게임에 출석하여 **일일 보상**을 지급받을 수 있습니다.
 
 ### [게임 플레이 시작]
+본 게임은 안드로이드 배포를 기준으로 개발되어 iOS 빌드에 대한 테스트는 진행되지 않았습니다.
+
+게임의 최신 정식 버전(1.3.2)은 [구글 플레이 스토어](https://play.google.com/store/apps/details?id=com.decisiondisorder.behindteacher)에서 다운로드 받을 수 있습니다.
 
 ### [스크린샷]
-
+<메인 화면>  
+<img src="/Screenshots/1.jpg" width=50% height=50%/>  
+<TV 게임 진행 중인 화면>  
+<img src="/Screenshots/2.jpg" width=50% height=50%/>  
+<TV 게임 중 선생님에게 걸린 화면>  
+<img src="/Screenshots/3.jpg" width=50% height=50%/>  
+<까톡 게임 진행 중인 화면>  
+<img src="/Screenshots/4.jpg" width=50% height=50%/>  
+<몰래 과자먹는 장면>  
+<img src="/Screenshots/6.jpg" width=50% height=50%/>  
+<선생님께 걸리고 게임오버 된 장면>  
+<img src="/Screenshots/5.jpg" width=50% height=50%/>  
 
 ## 기술 관련 소개
 ### [개발환경 및 기술 스택]
