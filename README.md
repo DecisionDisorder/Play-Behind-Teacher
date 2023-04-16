@@ -44,17 +44,17 @@
 
 ### [스크린샷]
 <메인 화면>  
-<img src="/Screenshots/1.jpg" width=50% height=50%/>  
+<img src="/Screenshots/1.jpg" width=30% height=30%/>  
 <TV 게임 진행 중인 화면>  
-<img src="/Screenshots/2.jpg" width=50% height=50%/>  
+<img src="/Screenshots/2.jpg" width=30% height=30%/>  
 <TV 게임 중 선생님에게 걸린 화면>  
-<img src="/Screenshots/3.jpg" width=50% height=50%/>  
+<img src="/Screenshots/3.jpg" width=30% height=30%/>  
 <까톡 게임 진행 중인 화면>  
-<img src="/Screenshots/4.jpg" width=50% height=50%/>  
+<img src="/Screenshots/4.jpg" width=30% height=30%/>  
 <몰래 과자먹는 장면>  
-<img src="/Screenshots/6.jpg" width=50% height=50%/>  
+<img src="/Screenshots/6.jpg" width=30% height=30%/>  
 <선생님께 걸리고 게임오버 된 장면>  
-<img src="/Screenshots/5.jpg" width=50% height=50%/>  
+<img src="/Screenshots/5.jpg" width=30% height=30%/>  
 
 ## 기술 관련 소개
 ### [개발환경 및 기술 스택]
