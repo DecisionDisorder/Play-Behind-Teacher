@@ -46,27 +46,26 @@
 <p>
 <figure>
 	<figcaption>[메인 화면]</figcaption>
-	<img src="/Screenshots/1.jpg" width=30% height=30%/ alt="메인 화면">  
 </figure>
 <figure>
 	<figcaption>[TV 게임 진행 중인 화면]</figcaption>
-	<img src="/Screenshots/2.jpg" width=30% height=30%/ alt="TV 게임 진행 중인 화면">  
+	<img src="/Screenshots/2.jpg" width=30% height=30%/ alt="TV 게임 진행 중인 화면">
 </figure>
 <figure>
 	<figcaption>[TV 게임 중 선생님에게 걸리는 화면]</figcaption>
-	<img src="/Screenshots/3.jpg" width=30% height=30%/ alt="TV 게임 중 선생님에게 걸린 화면">  
+	<img src="/Screenshots/3.jpg" width=30% height=30%/ alt="TV 게임 중 선생님에게 걸린 화면">
 </figure>
 <figure>
 	<figcaption>[까톡 게임 진행 중인 화면]</figcaption>
-	<img src="/Screenshots/4.jpg" width=30% height=30%/ alt="까톡 게임 진행 중인 화면">  
+	<img src="/Screenshots/4.jpg" width=30% height=30%/ alt="까톡 게임 진행 중인 화면">
 </figure>
 <figure>
 	<figcaption>[몰래 과자먹는 장면]</figcaption>
-	<img src="/Screenshots/6.jpg" width=30% height=30%/ alt="몰래 과자먹는 장면">  
+	<img src="/Screenshots/6.jpg" width=30% height=30%/ alt="몰래 과자먹는 장면">
 </figure>
 <figure>
 	<figcaption>[선생님께 걸리고 게임오버 된 화면]</figcaption>
-	<img src="/Screenshots/5.jpg" width=30% height=30%/ alt="선생님께 걸리고 게임오버 된 화면">  
+	<img src="/Screenshots/5.jpg" width=30% height=30%/ alt="선생님께 걸리고 게임오버 된 화면">
 </figure>
 </p>
 
